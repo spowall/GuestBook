@@ -1,0 +1,34 @@
+﻿@model GuestBook.Models.EventModel[]
+
+<div class="heading">
+
+    <span class="title">Events</span>
+    <span class="actions">
+        <button>New Event</button>
+    </span>
+</div>
+
+
+
+<table class="table">
+    <tr>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Guest Count</th>
+        <th>Time</th>
+        <th>Location</th>
+        <th></th>
+    </tr>
+
+    @foreach(EventModel specificEvent in Model)
+    {
+        <tr>
+            <td>@specificEvent.Name</td>
+            <td>@specificEvent.Date.ToString("d MMM yyyy")</td>
+            <td>@specificEvent.GuestCount</td>
+            <td>@specificEvent.Time</td>
+            <td>@specificEvent.Location</td>
+        </tr>
+    }
+
+</table>

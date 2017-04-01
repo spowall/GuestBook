@@ -1,0 +1,23 @@
+﻿body {
+    font-family: Calibri, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.heading{
+    margin: 10px;
+}
+
+.heading .title{
+    font-size:20px;
+}
+
+.heading .actions{
+    float:right;
+}
+
+.table{
+    width:100%;
+}
+
+.table th{
+    text-align:left;
+}
