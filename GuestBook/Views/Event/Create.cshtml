@@ -1,0 +1,42 @@
+﻿@model GuestBook.Models.EventModel
+
+@{
+    ViewBag.Title = "Create a new event";
+}
+
+<h2>Create a new event</h2>
+
+<div>
+    <p>
+        @ViewBag.ErrorMessage
+    </p>
+    <form action="/event/create" method="post">
+        <table class="table">
+            <tr>
+                <td>Name:</td>
+                <td>@Html.EditorFor(p => p.Name)</td>
+            </tr>
+
+            <tr>
+                <td>Date:</td>
+                <td>@Html.EditorFor(p => p.Date) </td>
+            </tr>
+
+            <tr>
+                <td>Location:</td>
+                <td>@Html.TextAreaFor(p => p.Location) </td>
+            </tr>
+
+            <tr>
+                <td> </td>
+                <td> </td>
+            </tr>
+
+            <tr>
+                <td>@Html.ActionLink("Go back to events list", "index", "event")</td>
+                <td> <input type="submit" id="submit" value="Create new event" /> </td>
+            </tr>
+        </table>
+    </form> 
+</div>
+

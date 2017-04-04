@@ -1,4 +1,5 @@
-﻿using GuestBook.Models;
+﻿using GuestBook.Data;
+using GuestBook.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,42 +9,26 @@ namespace GuestBook.Domain
 {
     public class EventManager
     {
-        private static List<EventModel> _events = new List<EventModel>();
-
-        static EventManager()
+        private GuestDbContext _guestdbcontext;
+        private List<EventModel> _events = new List<EventModel>();       
+        public EventManager()
         {
-            var event1 = new EventModel
-            {
-                Name = "Facebook Event",
-                Date = DateTime.Parse("2017-01-24"),
-                GuestCount = 20,
-                Location = "CCHub Yaba",
-                Time = TimeSpan.FromHours(18)
-            };
-
-            _events.Add(event1);
-
-            var event2 = new EventModel
-            {
-                Name = "Vamia Launch",
-                Date = DateTime.Parse("2017-04-01"),
-                GuestCount = 100,
-                Location = "Eko Hotels & Suites",
-                Time = TimeSpan.FromHours(14)
-            };
-
-            _events.Add(event2);
+            _guestdbcontext = new GuestDbContext();
         }
 
         public EventModel[] ListEvents()
         {
+            _events = _guestdbcontext.Events.ToList();
             return _events.ToArray();
         }
 
         public EventModel CreateEvent(EventModel model)
         {
-            _events.Add(model);
-            return model;
+
+            _guestdbcontext.Events.Add(model);
+            _guestdbcontext.SaveChanges();
+            var newmodel = _guestdbcontext.Events.FirstOrDefault(p => p.Name == model.Name);
+            return newmodel;
         }
 
         public EventModel SearchEvent(string name)

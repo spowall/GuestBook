@@ -7,6 +7,7 @@ namespace GuestBook.Models
 {
     public class EventModel
     {
+        public int ID { get; set; }
         public string Name { get; set; }
         public DateTime Date { get; set; }
         public int GuestCount { get; set; }
