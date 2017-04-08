@@ -11,7 +11,7 @@ namespace GuestBook.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return RedirectToAction("index", "event");
+            return View();
         }
     }
 }

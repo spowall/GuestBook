@@ -1,34 +1,41 @@
 ﻿@model GuestBook.Models.EventModel[]
 
-<div class="heading">
+<div class="row">
+    <div class="col-xs-6">
+        <h2 class="title">Events</h2>
+    </div>
+    <div class="col-xs-6 text-right">
+        <div style="padding-top:20px;">
+            <a class="btn btn-primary" href="/event/create">New Event</a>
+        </div>
+    </div>
+</div>
+<hr style="margin-top:0px;"/>
 
-    <span class="title">Events</span>
-    <span class="actions">
-        <a href="/event/create">New Event</a>
-    </span>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Guest Count</th>
+                <th>Time</th>
+                <th>Location</th>
+                <th></th>
+            </tr>
+
+            @foreach (EventModel specificEvent in Model)
+            {
+                <tr>
+                    <td>@specificEvent.Name</td>
+                    <td>@specificEvent.Date.ToString("d MMM yyyy")</td>
+                    <td>@specificEvent.GuestCount</td>
+                    <td>@specificEvent.Time</td>
+                    <td>@specificEvent.Location</td>
+                </tr>
+            }
+
+        </table>
+    </div>
 </div>
 
-
-
-<table class="table">
-    <tr>
-        <th>Name</th>
-        <th>Date</th>
-        <th>Guest Count</th>
-        <th>Time</th>
-        <th>Location</th>
-        <th></th>
-    </tr>
-
-    @foreach(EventModel specificEvent in Model)
-    {
-        <tr>
-            <td>@specificEvent.Name</td>
-            <td>@specificEvent.Date.ToString("d MMM yyyy")</td>
-            <td>@specificEvent.GuestCount</td>
-            <td>@specificEvent.Time</td>
-            <td>@specificEvent.Location</td>
-        </tr>
-    }
-
-</table>
