@@ -1,0 +1,60 @@
+﻿@model GuestBook.Models.EventModel[]
+
+<div class="row">
+    <div class="col-md-4">
+        <h2 class="title">Events</h2>
+    </div>
+    <div class="col-md-8">
+        <form action="@Url.Action("search")" method="get" class="form-inline text-right" style="margin-top:20px;">
+            <div class="form-group">
+                <label class="sr-only" for="search">Search</label>
+                <input type="text" class="form-control" name="search" value="@ViewBag.Search" placeholder="Enter Search Text">
+            </div>
+            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i>Search</button>
+        </form>
+    </div>
+</div>
+<hr style="margin-top:0px;" />
+
+<div class="row">
+    <div class="col-md-12 text-center">
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+
+        @if (Model != null && Model.Any())
+        {
+            <table class="table">
+                <tr>
+                    <th>Name</th>
+                    <th>Date</th>
+                    <th>Guest Count</th>
+                    <th>Time</th>
+                    <th>Location</th>
+                    <th></th>
+                </tr>
+
+                @foreach (EventModel specificEvent in Model)
+                {
+                    <tr>
+                        <td>@specificEvent.Name</td>
+                        <td>@specificEvent.Date.ToString("d MMM yyyy")</td>
+                        <td>@specificEvent.GuestCount</td>
+                        <td>@specificEvent.Time</td>
+                        <td>@specificEvent.Location</td>
+                    </tr>
+                }
+
+            </table>
+        }
+        else
+        {
+            <div class="text-center" style="padding:50px 0px">
+                <h3>There are no Results</h3>
+            </div>
+        }
+    </div>
+</div>

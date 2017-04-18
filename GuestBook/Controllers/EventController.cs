@@ -24,6 +24,13 @@ namespace GuestBook.Controllers
             return View(events);
         }
 
+        public ActionResult Search(string search)
+        {
+            ViewBag.Search = search;
+            var events = _manager.FindEvents(search);
+            return View(events);
+        }
+
         //loads a blank event page for the user to fill
         [HttpGet] 
         public ActionResult Create()

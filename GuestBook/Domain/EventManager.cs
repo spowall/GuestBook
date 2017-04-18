@@ -31,6 +31,15 @@ namespace GuestBook.Domain
             return newmodel;
         }
 
+        public EventModel[] FindEvents(string search)
+        {
+            var query = from events in _guestdbcontext.Events
+                        where events.Name.Contains(search)
+                        select events;
+
+            return query.ToArray();   
+        }
+
         public EventModel SearchEvent(string name)
         {
             var model = _events.Where(e => e.Name.ToLower() == name.ToLower())
